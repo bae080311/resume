@@ -68,6 +68,7 @@ const skillGroups = [
 
 .tag {
   font-size: 13px;
+  font-weight: 600;
   color: var(--gray-800);
   background: var(--white);
   border: 1px solid var(--gray-100);
