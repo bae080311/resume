@@ -2,12 +2,18 @@
   <section id="activities">
     <p class="section-title">Activities</p>
     <div class="activity-list">
-      <div v-for="activity in activities" :key="activity.title" class="activity-item">
+      <div
+        v-for="activity in activities"
+        :key="activity.title"
+        class="activity-item"
+      >
         <div class="activity-header">
           <h3>{{ activity.title }}</h3>
           <span class="period">{{ activity.period }}</span>
         </div>
-        <p v-if="activity.description" class="desc">{{ activity.description }}</p>
+        <p v-if="activity.description" class="desc">
+          {{ activity.description }}
+        </p>
       </div>
     </div>
   </section>
@@ -16,31 +22,26 @@
 <script setup lang="ts">
 const activities = [
   {
-    title: '전교 학생회장 위임',
-    period: '2025.07 – 진행중',
+    title: "전교 학생회장 위임",
+    period: "2025.07 – 2026.07",
     description: null,
   },
   {
-    title: '전공 동아리 부장',
-    period: '2025.03 – 진행중',
+    title: "FE 스터디",
+    period: "2024.07 – 진행중",
     description: null,
   },
   {
-    title: 'IT 연합 컨퍼런스 발표',
-    period: '2025.10.25',
+    title: "전공 동아리 부장",
+    period: "2025.03 – 진행중",
     description: null,
   },
   {
-    title: 'AI tech+ 발표',
-    period: '2025.10.17',
+    title: "IT 연합 컨퍼런스 발표",
+    period: "2025.10.25",
     description: null,
   },
-  {
-    title: 'FE 스터디',
-    period: '2024.07 – 진행중',
-    description: null,
-  },
-]
+];
 </script>
 
 <style scoped>
