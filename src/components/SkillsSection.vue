@@ -20,7 +20,7 @@ const skillGroups = [
   },
   {
     category: 'Framework / Library',
-    skills: ['React', 'React Native', 'Next.js', 'Expo', 'TanStack Query', 'Zustand'],
+    skills: ['React', 'React Native', 'Next.js', 'Nest.js', 'Expo', 'TanStack Query', 'Zustand', 'Redux'],
   },
   {
     category: 'Styling',
@@ -28,11 +28,11 @@ const skillGroups = [
   },
   {
     category: 'Tooling',
-    skills: ['Zod', 'Axios', 'Socket.IO', 'ESLint', 'Prettier', 'Git'],
+    skills: ['Zod', 'Axios', 'Socket.IO', 'Vitest', 'ESLint', 'Prettier', 'Git'],
   },
   {
     category: 'Infrastructure',
-    skills: ['GitHub Actions', 'EAS', 'Vercel', 'Sentry', 'Vitest'],
+    skills: ['GitHub Actions', 'EAS', 'Vercel', 'Sentry', 'Docker'],
   },
 ]
 </script>
