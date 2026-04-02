@@ -39,12 +39,6 @@ const activities = [
     tooltip: "책 스터디, 블로그 작성 후 발표, 매일 코딩 테스트 풀이",
   },
   {
-    title: "전공 동아리 부장",
-    period: "2025.03 – 진행중",
-    description: null,
-    tooltip: null,
-  },
-  {
     title: "IT 연합 컨퍼런스 발표",
     period: "2025.10.25",
     description: null,
