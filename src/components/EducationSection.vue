@@ -5,6 +5,9 @@
       <div class="edu-item">
         <div class="edu-header">
           <h3>광주소프트웨어마이스터고등학교</h3>
+          <Tooltip text="현장실습 채용 시 2025.10부터 근무 가능" :index="1">
+            <span class="period">2027.01 졸업예정</span>
+          </Tooltip>
         </div>
         <p class="major">SW개발과</p>
       </div>
@@ -18,6 +21,10 @@
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+import Tooltip from "./Tooltip.vue";
+</script>
 
 <style scoped>
 .edu-list {
@@ -45,10 +52,16 @@ h3 {
   color: var(--black);
 }
 
+.period {
+  font-size: 12px;
+  color: var(--gray-400);
+}
+
 .major {
   font-size: 14px;
   color: var(--gray-600);
 }
+
 
 .cert-list {
   margin-top: 28px;
