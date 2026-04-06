@@ -36,8 +36,8 @@ defineProps<{
   bottom: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
-  background: #1a1a1a;
-  color: #f5f5f5;
+  background: var(--gray-800);
+  color: var(--bg);
   font-size: 12px;
   font-weight: 500;
   white-space: nowrap;
@@ -55,7 +55,7 @@ defineProps<{
   left: 50%;
   transform: translateX(-50%);
   border: 5px solid transparent;
-  border-top-color: #1a1a1a;
+  border-top-color: var(--gray-800);
 }
 
 .tooltip-wrap:hover .tooltip {
