@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppHeader from "./components/AppHeader.vue";
 import HeroSection from "./components/HeroSection.vue";
 import AboutSection from "./components/AboutSection.vue";
 import SkillsSection from "./components/SkillsSection.vue";
@@ -12,6 +13,7 @@ import AppFooter from "./components/AppFooter.vue";
 </script>
 
 <template>
+  <AppHeader />
   <main class="wrap">
     <HeroSection />
     <div class="divider" />
