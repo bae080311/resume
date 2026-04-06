@@ -33,7 +33,7 @@ const activities = [
     tooltip: null,
   },
   {
-    title: "FE 스터디",
+    title: "FE 스터디장",
     period: "2024.07 – 진행중",
     description: null,
     tooltip: "책 스터디, 블로그 작성 후 발표, 매일 코딩 테스트 풀이",
