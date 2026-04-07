@@ -92,6 +92,48 @@ const projects = [
     ],
   },
   {
+    title: "Xconda",
+    period: "2025.12 – 진행중",
+    description:
+      "Cubeberry와의 산학협력 프로젝트. Google Veo·Runway·Kling 등 16개 AI 도구를 통합한 이미지·비디오 생성 플랫폼. 크레딧 기반 결제 시스템으로 서비스 제공",
+    role: "FrontEnd, BackEnd",
+    team: "산학협력 기업: Cubeberry",
+    sections: [
+      {
+        name: "AI 스튜디오 도구 구현",
+        items: [
+          "시네마틱 스토리보드·옷 갈아입히기(Cloth Swap)·Cine-Grid·Red Arrow View·CineGrade·Image Upscale 총 6개 도구의 서버 API 및 클라이언트 페이지 구현",
+          "크레딧 선차감 → AI Provider 호출 → 웹훅 결과 수신의 비동기 처리 흐름을 도구별로 구축",
+        ],
+      },
+      {
+        name: "Image Upscale 히스토리 UI 개선",
+        items: [
+          "최신 결과를 상단에 크게 표시하고 이전 결과를 History 섹션으로 분리하여 결과 탐색 편의성 향상",
+          "결과 조회 범위를 1시간/1개 → 24시간/100개로 확장",
+        ],
+      },
+      {
+        name: "트러블 슈팅 — Firestore 구독 시 이전 데이터 노출",
+        items: [
+          "문제: docId 변경 시 data.value 초기화 누락으로 구독 전환 중 이전 결과가 잠깐 노출",
+          "해결: watch에서 newId 진입 시점에 data.value = null로 즉시 초기화하여 잔상 제거",
+        ],
+      },
+    ],
+    techs: [
+      "Nuxt 4",
+      "TypeScript",
+      "Vue 3",
+      "Tailwind CSS",
+      "Pinia",
+      "Firebase",
+      "Firestore",
+      "Google GenAI",
+      "Cloudflare R2",
+    ],
+  },
+  {
     title: "光탈페(광주탈렌트페스티벌)",
     period: "2025.02 – 2025.10",
     description:
@@ -138,32 +180,6 @@ const projects = [
       "TanStack Query",
       "Zod",
       "Axios",
-    ],
-  },
-  {
-    title: "더기쁨노인복지센터",
-    period: "2026.01 – 2026.02",
-    description: "노인복지센터 이용자 소통과 기관 홍보 서비스",
-    role: "Team Leader, FrontEnd",
-    team: "FE 3명, BE 3명, Design 2명",
-    sections: [
-      {
-        name: "SEO 최적화",
-        items: [
-          "Canonical 설정과 메타데이터 구조화(title, description, Open Graph)를 통해 검색엔진이 공식 사이트를 명확히 인식하도록 개선",
-          "robots.txt · sitemap.xml 제공 및 불필요한 경로 크롤링 제외로 검색엔진 수집·인덱싱 환경 정리",
-          "압축 전송, 정적 자산 캐시, 보안 헤더 적용으로 페이지 로딩 성능과 검색엔진 신뢰도 향상",
-        ],
-      },
-    ],
-    techs: [
-      "Next.js 15",
-      "TypeScript",
-      "React 19",
-      "Tailwind CSS",
-      "TanStack Query",
-      "Axios",
-      "Sonner",
     ],
   },
 ];
