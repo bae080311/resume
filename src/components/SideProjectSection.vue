@@ -12,8 +12,9 @@
         </div>
         <p class="desc">
           섹션 기반 스크롤 이동과 활성 상태 관리를 제공하는 JavaScript 라이브러리입니다.<br />
-          core 로직을 중심으로 React·Vue 어댑터를 모노레포 구조로 분리 설계해 확장성과 재사용성을 확보했습니다.<br />
-          npm에 여러 패키지로 공개된 오픈소스로, 총 <strong>2,000+회</strong> 이상 다운로드되었습니다.
+          core 로직을 중심으로 React·Vue·Svelte 어댑터를 모노레포 구조로 분리 설계해 확장성과 재사용성을 확보했습니다.<br />
+          npm에 여러 패키지로 공개된 오픈소스로, 총 <strong>2,000+회</strong> 이상 다운로드되었으며 테스트 커버리지 <strong>90%+</strong>를 달성했습니다.<br />
+          n8n과 Gemini API를 연동한 <strong>AI 파이프라인</strong>을 구축해 매주 기획 기반 이슈 자동 생성, Gemini Code Assist 리뷰를 반영한 자동 수정 커밋 워크플로우를 설계했습니다.
         </p>
         <div class="tech-tags">
           <span class="tech">JavaScript</span>
