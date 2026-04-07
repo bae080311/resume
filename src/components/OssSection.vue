@@ -12,6 +12,16 @@
           로고 자동 전환과 마크업 정리를 적용해 README 품질을 개선
         </p>
       </div>
+      <div class="oss-item">
+        <div class="title-row">
+          <a href="https://github.com/react-hook-form/react-hook-form" target="_blank" rel="noopener" class="repo-link">react-hook-form</a>
+          <span class="label">Bug Fix</span>
+        </div>
+        <p class="desc">
+          숫자 문자열 키를 가진 defaultValues에서 초기 렌더 시 isDirty가 잘못 true로 계산되던 문제를
+          deepEqual 비교 로직 개선으로 해결하고 회귀 테스트를 추가해 라이브러리 안정성을 높임
+        </p>
+      </div>
     </div>
   </section>
 </template>
