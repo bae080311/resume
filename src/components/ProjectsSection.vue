@@ -61,12 +61,27 @@ const projects = [
         ],
       },
       {
+        name: "프로필",
+        items: [
+          "쿼리 파라미터로 id를 받아 myId === profileId 비교로 내 프로필·상대 프로필 뷰를 단일 컴포넌트로 재활용",
+          "밝기 BAR 커스텀 구현 — 단계별로 게이지가 차오르는 애니메이션 퍼블리싱",
+        ],
+      },
+      {
         name: "모바일 앱/웹 배포·운영 자동화 인프라 구축",
         items: [
           "GitHub Actions + EAS를 활용해 Android·iOS 자동 빌드 및 배포 파이프라인 구축, main 브랜치 기준 배포 자동화",
           "환경 변수를 EAS Secret으로 관리하고, Sentry 크래시 수집 → 장애 발생 시 Discord Bot 실시간 알림 구성",
           "Android·iOS 모두 학교 법인 계정을 직접 생성해 실제 배포 수행",
           "PR 단위 Vitest 테스트 자동 실행 및 GitHub Actions + Vercel CI/CD 구축",
+        ],
+      },
+      {
+        name: "트러블 슈팅 — 실제 iOS 기기에서 form UI 깨짐",
+        items: [
+          "문제: 에뮬레이터·안드로이드에서는 정상이나 실제 iOS 기기에서 수정 form의 모든 요소가 뭉쳐 보이는 현상",
+          "원인: ScrollView 자식에 flex-1 적용 시 무한 확장되는 ScrollView 특성과 충돌",
+          "해결: flex-1 제거 후 NativeWind의 space-y로 간격 처리, 전 기기 환경에서 정상 확인",
         ],
       },
       {
@@ -100,16 +115,18 @@ const projects = [
     team: "산학협력 기업: Cubeberry",
     sections: [
       {
-        name: "AI 스튜디오 도구 구현",
+        name: "AI 스튜디오 도구 풀스택 구현",
         items: [
-          "시네마틱 스토리보드·옷 갈아입히기(Cloth Swap)·Cine-Grid·Red Arrow View·CineGrade·Image Upscale 총 6개 도구의 서버 API 및 클라이언트 페이지 구현",
-          "크레딧 선차감 → AI Provider 호출 → 웹훅 결과 수신의 비동기 처리 흐름을 도구별로 구축",
+          "시네마틱 스토리보드·Cloth Swap·Cine-Grid·Red Arrow View·CineGrade·Image Upscale 총 6개 도구의 서버 API 및 클라이언트 페이지 구현",
+          "크레딧 선차감 → AI Provider(Google GenAI·Runway·Kling 등) 호출 → 웹훅 결과 수신의 비동기 처리 흐름을 도구별로 구축",
+          "Starting → Processing → Succeeded/Failed 상태 흐름 관리 및 실패 시 크레딧 자동 환불 처리",
         ],
       },
       {
         name: "Image Upscale 히스토리 UI 개선",
         items: [
           "최신 결과를 상단에 크게 표시하고 이전 결과를 History 섹션으로 분리하여 결과 탐색 편의성 향상",
+          "larg prop 추가로 결과 이미지 크기(width 100% / max-height 55vh) 동적 제어",
           "결과 조회 범위를 1시간/1개 → 24시간/100개로 확장",
         ],
       },
@@ -155,6 +172,13 @@ const projects = [
           "SSE를 사용하여 현재 공연 중인 팀을 실시간으로 변경",
           "커스텀 드롭다운 구현 — 더블 클릭 시 점수 직접 입력 가능하도록 사용자 편의 개선",
           "버튼을 공연 완료·심사 완료·공연 전 3가지 state로 나누어 유동적 수정이 가능하도록 구현",
+        ],
+      },
+      {
+        name: "트러블 슈팅 — 팀소개 GitHub API CORS 및 요청 수 초과",
+        items: [
+          "문제: CSR 방식의 GitHub API 호출로 CORS 발생, 하루 5,000회 요청 한도 초과 우려, Redis 유지 비용 발생",
+          "해결: API handler로 SSR 전환해 CORS 제거, Redis 일 1회 캐싱으로 요청 수 절감, 이후 Notion DB로 마이그레이션해 비용 제거",
         ],
       },
       {
