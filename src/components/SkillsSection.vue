@@ -28,7 +28,7 @@ const skillGroups = [
   },
   {
     category: 'Tooling',
-    skills: ['Zod', 'Axios', 'Socket.IO', 'Vitest', 'ESLint', 'Prettier', 'Git'],
+    skills: ['Zod', 'Axios', 'Socket.IO', 'Vitest', 'ESLint', 'Prettier', 'Git', 'Slack', 'Jira'],
   },
   {
     category: 'Infrastructure',

@@ -25,7 +25,10 @@
             :key="section.name"
             class="contrib-section"
           >
-            <p class="contrib-title">{{ section.name }}</p>
+            <p class="contrib-title">
+          <a v-if="section.link" :href="section.link" target="_blank" rel="noopener" class="contrib-link">{{ section.name }} ↗</a>
+          <template v-else>{{ section.name }}</template>
+        </p>
             <ul>
               <li v-for="item in section.items" :key="item">{{ item }}</li>
             </ul>
@@ -44,7 +47,21 @@
 <script setup lang="ts">
 import Tooltip from "./Tooltip.vue";
 
-const projects = [
+interface Section {
+  name: string
+  link?: string
+  items: string[]
+}
+
+const projects: {
+  title: string
+  period: string
+  description: string
+  role: string
+  team: string
+  sections: Section[]
+  techs: string[]
+}[] = [
   {
     title: "시민화폐, 광산",
     period: "2025.02 – 2025.10",
@@ -183,6 +200,7 @@ const projects = [
       },
       {
         name: "트러블 슈팅 — 토큰 재발급 무한 반복",
+        link: "https://baeougi.tistory.com/75",
         items: [
           "문제: 페이지 진입 시 다수 API 요청이 동시에 401을 트리거 → 리프레시 토큰 로테이션 정책과 충돌해 재발급이 무한 반복",
           "해결: 재발급을 단 한 번만 수행하도록 단일화, 나머지 요청은 큐에 적재 후 새 토큰으로 순차 재시도하여 경쟁 제거",
@@ -285,6 +303,17 @@ h3 {
   font-size: 13px;
   font-weight: 700;
   color: var(--black);
+}
+
+.contrib-link {
+  color: var(--black);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.contrib-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
 ul {
