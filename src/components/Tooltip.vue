@@ -1,16 +1,23 @@
 <template>
   <span class="tooltip-wrap">
     <slot />
-    <sup class="mark">[{{ index }}]</sup>
+    <sup class="mark">[{{ displayIndex }}]</sup>
     <span class="tooltip">{{ text }}</span>
   </span>
 </template>
 
 <script setup lang="ts">
-defineProps<{
+import { onUnmounted } from 'vue'
+import { useFootnotes } from '../composables/useFootnotes'
+
+const props = defineProps<{
   text: string
   index: number | string
 }>()
+
+const { register, unregister } = useFootnotes()
+const displayIndex = register(props.text)
+onUnmounted(() => unregister(displayIndex))
 </script>
 
 <style scoped>
@@ -61,5 +68,17 @@ defineProps<{
 .tooltip-wrap:hover .tooltip {
   visibility: visible;
   opacity: 1;
+}
+
+@media print {
+  .tooltip {
+    display: none;
+  }
+
+  .mark {
+    font-size: 9px;
+    font-weight: 700;
+    color: #555;
+  }
 }
 </style>

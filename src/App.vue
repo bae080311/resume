@@ -10,6 +10,7 @@ import AwardsSection from "./components/AwardsSection.vue";
 import ActivitiesSection from "./components/ActivitiesSection.vue";
 import EducationSection from "./components/EducationSection.vue";
 import AppFooter from "./components/AppFooter.vue";
+import PrintFootnotes from "./components/PrintFootnotes.vue";
 </script>
 
 <template>
@@ -34,6 +35,7 @@ import AppFooter from "./components/AppFooter.vue";
     <EducationSection />
   </main>
   <AppFooter />
+  <PrintFootnotes />
   <a href="/portfolio.pdf" download="배경진_포트폴리오.pdf" class="floating-download">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
     포트폴리오 다운로드
