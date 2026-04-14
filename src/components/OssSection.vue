@@ -6,6 +6,7 @@
         <div class="title-row">
           <a href="https://github.com/TanStack/query" target="_blank" rel="noopener" class="repo-link">tanstack/query</a>
           <span class="label">Documentation</span>
+          <a href="https://github.com/TanStack/query/pull/10107" target="_blank" rel="noopener" class="pr-link">PR #10107 ↗</a>
         </div>
         <p class="desc">
           다크/라이트 모드에 따라 일부 파트너 로고가 아예 보이지 않는 문제를 해결하기 위해
@@ -16,6 +17,7 @@
         <div class="title-row">
           <a href="https://github.com/react-hook-form/react-hook-form" target="_blank" rel="noopener" class="repo-link">react-hook-form</a>
           <span class="label">Bug Fix</span>
+          <a href="https://github.com/react-hook-form/react-hook-form/pull/13347" target="_blank" rel="noopener" class="pr-link">PR #13347 ↗</a>
         </div>
         <p class="desc">
           숫자 문자열 키를 가진 defaultValues에서 초기 렌더 시 isDirty가 잘못 true로 계산되던 문제를
@@ -66,6 +68,19 @@
   padding: 1px 7px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.pr-link {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray-600);
+  border-bottom: 1px solid var(--gray-200);
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.pr-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
 .desc {
