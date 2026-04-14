@@ -13,28 +13,7 @@
 </template>
 
 <script setup lang="ts">
-const skillGroups = [
-  {
-    category: 'Language',
-    skills: ['TypeScript', 'JavaScript'],
-  },
-  {
-    category: 'Framework / Library',
-    skills: ['React', 'React Native', 'Next.js', 'Nest.js', 'Expo', 'TanStack Query', 'Zustand', 'Redux'],
-  },
-  {
-    category: 'Styling',
-    skills: ['Tailwind CSS', 'NativeWind'],
-  },
-  {
-    category: 'Tooling',
-    skills: ['Zod', 'Axios', 'Socket.IO', 'Vitest', 'ESLint', 'Prettier', 'Git', 'Slack', 'Jira'],
-  },
-  {
-    category: 'Infrastructure',
-    skills: ['GitHub Actions', 'EAS', 'Vercel', 'Sentry', 'Docker'],
-  },
-]
+import { skillGroups } from "../data/activeResume";
 </script>
 
 <style scoped>

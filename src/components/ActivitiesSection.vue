@@ -24,27 +24,7 @@
 
 <script setup lang="ts">
 import Tooltip from "./Tooltip.vue";
-
-const activities = [
-  {
-    title: "전교 학생회장 위임",
-    period: "2025.07 – 2026.07",
-    description: null,
-    tooltip: null,
-  },
-  {
-    title: "FE 스터디장",
-    period: "2024.07 – 진행중",
-    description: null,
-    tooltip: "책 스터디, 블로그 작성 후 발표, 매일 코딩 테스트 풀이",
-  },
-  {
-    title: "IT 연합 컨퍼런스 발표",
-    period: "2025.10.25",
-    description: null,
-    tooltip: "전국 IT 고등학교 학생들이 교류하고 성장하는 장으로, 지식과 경험을 공유하는 컨퍼런스",
-  },
-];
+import { activities } from "../data/activeResume";
 </script>
 
 <style scoped>
