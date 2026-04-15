@@ -10,6 +10,7 @@ export interface Project {
   description: string
   role: string
   team: string
+  github?: string
   sections: Section[]
   techs: string[]
 }

@@ -8,6 +8,7 @@ export const projects: Project[] = [
       '광주광역시 광산구 주민 390,000+명을 대상으로 한 지역 기반 실서비스. 가상 화폐 \'광산\'을 통해 주민 간 물품과 서비스를 거래할 수 있는 플랫폼',
     role: 'Team Leader, FrontEnd, App',
     team: 'FE 2명, App 2명, BE 2명, Design 1명, DevOps 1명',
+    github: 'https://github.com/School-of-Company/Gwangsan-Crossplatform',
     sections: [
       {
         name: '어드민 관리 페이지',
@@ -113,6 +114,7 @@ export const projects: Project[] = [
       '광주학생탈렌트페스티벌 행사 관리 공식 웹 서비스. 행사 당일 DAU 3,000+명, 누적 트래픽 73,000+건, 이벤트 50,000+건 처리. 기존 외주 업체 대비 1천만 원 비용 절감',
     role: 'Team Leader, FrontEnd',
     team: 'FE 3명, BE 3명, Design 2명, DevOps 1명',
+    github: 'https://github.com/School-of-Company/Gwangju-talent-festival-Client',
     sections: [
       {
         name: '슬로건 공모 페이지',
