@@ -1,16 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { usePortfolioChannel } from '../composables/usePortfolioChannel'
-import { portfolioChannelList } from '../data/portfolioChannels'
 
 const isDark = ref(false)
-const { activeChannelId, selectChannel } = usePortfolioChannel()
-
-function navigateChannel(event: MouseEvent, channelId: (typeof portfolioChannelList)[number]['id']): void {
-  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
-  event.preventDefault()
-  selectChannel(channelId)
-}
 
 function toggleTheme() {
   isDark.value = !isDark.value
@@ -34,19 +25,6 @@ onMounted(() => {
     <div class="header-inner">
       <div class="identity">
         <span class="logo">배경진</span>
-        <div class="channel-switch" role="navigation" aria-label="포트폴리오 채널">
-          <a
-            v-for="channel in portfolioChannelList"
-            :key="channel.id"
-            :href="channel.path"
-            class="channel-link"
-            :class="{ 'is-active': activeChannelId === channel.id }"
-            :aria-current="activeChannelId === channel.id ? 'page' : undefined"
-            @click="navigateChannel($event, channel.id)"
-          >
-            {{ channel.label }}
-          </a>
-        </div>
       </div>
       <div class="header-right">
         <nav>
@@ -101,45 +79,6 @@ header {
 .identity {
   display: flex;
   align-items: center;
-  gap: 16px;
-}
-
-.channel-switch {
-  display: flex;
-  padding: 3px;
-  border: 1px solid var(--gray-200);
-  border-radius: 8px;
-  background: var(--gray-50);
-}
-
-.channel-link {
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  padding: 0 11px;
-  border: 0;
-  border-radius: 5px;
-  background: transparent;
-  color: var(--gray-600);
-  font: inherit;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.channel-link:hover {
-  color: var(--black);
-}
-
-.channel-link.is-active {
-  background: var(--white);
-  color: var(--accent);
-  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
-}
-
-.channel-link:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 1px;
 }
 
 .header-right {
@@ -188,20 +127,11 @@ nav a:hover { color: var(--black); }
   }
 
   .identity {
-    gap: 10px;
-  }
-
-  .channel-link {
-    padding: 0 8px;
+    gap: 0;
   }
 }
 
 @media (max-width: 430px) {
   .logo { display: none; }
-
-  .channel-link {
-    padding: 0 7px;
-    font-size: 11px;
-  }
 }
 </style>

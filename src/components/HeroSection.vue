@@ -33,7 +33,7 @@ const { activeChannel } = usePortfolioChannel()
 
 <style scoped>
 .hero {
-  padding: 64px 0 72px;
+  padding: 96px 0 72px;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -122,7 +122,7 @@ h1 strong {
 }
 
 @media (max-width: 600px) {
-  .hero { padding: 80px 0 48px; }
+  .hero { padding: 96px 0 48px; }
   h1 { font-size: 28px; }
 }
 </style>
