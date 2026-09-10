@@ -3,18 +3,10 @@
     <div class="footer-cta">
       <div class="cta-inner">
         <div class="cta-text">
-          <p class="cta-label">포트폴리오</p>
-          <h2 class="cta-title">함께 일할 개발자를 찾고 계시다면,<br />포트폴리오를 확인해 주세요.</h2>
+          <p class="cta-label">Contact</p>
+          <h2 class="cta-title">함께 일할 개발자를 찾고 계시다면,<br />편하게 연락해 주세요.</h2>
         </div>
         <div class="cta-actions">
-          <a href="/portfolio.pdf" download="배경진_포트폴리오.pdf" class="btn-download">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            포트폴리오 다운로드
-          </a>
           <a href="mailto:dev.kyungjin@gmail.com" class="btn-contact">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="2" y="4" width="20" height="16" rx="2"/>
@@ -67,7 +59,6 @@
   flex-shrink: 0;
 }
 
-.btn-download,
 .btn-contact {
   display: inline-flex;
   align-items: center;
@@ -78,16 +69,6 @@
   border-radius: 8px;
   transition: opacity 0.15s, background 0.15s, border-color 0.15s, color 0.15s;
   white-space: nowrap;
-}
-
-.btn-download {
-  background: var(--accent);
-  color: var(--white);
-  border: 1px solid var(--accent);
-}
-
-.btn-download:hover {
-  opacity: 0.85;
 }
 
 .btn-contact {
@@ -146,7 +127,6 @@ a {
     flex-direction: column;
   }
 
-  .btn-download,
   .btn-contact {
     width: 100%;
     justify-content: center;

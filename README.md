@@ -71,3 +71,13 @@ npm run branch -- feat contact-section
 ```
 
 `git:setup`은 이 저장소에만 hook과 커밋 템플릿을 설정한다. 이후 `main`/`master` 직접 커밋은 차단된다.
+
+## 포트폴리오 채널
+
+상단에서 프론트엔드, 백엔드, Product Engineer 포트폴리오를 전환할 수 있다. 각 채널은 독립된 경로로 직접 접근할 수 있다.
+
+```text
+/frontend
+/backend
+/product-engineer
+```
