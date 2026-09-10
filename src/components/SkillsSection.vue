@@ -13,7 +13,22 @@
 </template>
 
 <script setup lang="ts">
-import { skillGroups } from "../data/activeResume";
+import { computed } from 'vue'
+import { skillGroups as activeSkillGroups } from "../data/activeResume";
+import { usePortfolioChannel } from '../composables/usePortfolioChannel'
+
+const { activeChannel } = usePortfolioChannel()
+
+const skillGroups = computed(() => {
+  const visibleSkills = new Set(activeChannel.value.skills)
+
+  return activeSkillGroups
+    .map((group) => ({
+      ...group,
+      skills: group.skills.filter((skill) => visibleSkills.has(skill)),
+    }))
+    .filter((group) => group.skills.length > 0)
+})
 </script>
 
 <style scoped>

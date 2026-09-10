@@ -19,6 +19,14 @@ html { scroll-behavior: smooth; }
   --max-w: 760px;
 }
 
+:root[data-portfolio-channel="backend"] {
+  --accent: #0284c7;
+}
+
+:root[data-portfolio-channel="product-engineer"] {
+  --accent: #0f766e;
+}
+
 [data-theme="dark"] {
   --bg: #111111;
   --header-bg: rgba(17, 17, 17, 0.88);
@@ -31,6 +39,14 @@ html { scroll-behavior: smooth; }
   --gray-600: #9a9a9a;
   --gray-800: #d0d0d0;
   --accent: #818cf8;
+}
+
+[data-theme="dark"][data-portfolio-channel="backend"] {
+  --accent: #38bdf8;
+}
+
+[data-theme="dark"][data-portfolio-channel="product-engineer"] {
+  --accent: #2dd4bf;
 }
 
 body {
@@ -74,12 +90,6 @@ a { color: inherit; text-decoration: none; }
 
   header {
     display: none !important;
-  }
-
-  .btn-download {
-    background: #4338ca !important;
-    color: #fff !important;
-    border-color: #4338ca !important;
   }
 
   .btn-contact::after {

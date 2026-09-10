@@ -18,10 +18,11 @@ export const projects: Project[] = [
         ],
       },
       {
-        name: '프로필',
+        name: '생체 인증 (Face ID / 지문)',
         items: [
-          '쿼리 파라미터로 id를 받아 myId === profileId 비교로 내 프로필·상대 프로필 뷰를 단일 컴포넌트로 재활용',
-          '밝기 BAR 커스텀 구현 — 단계별로 게이지가 차오르는 애니메이션 퍼블리싱',
+          'react-native-keychain의 생체 인증 호출을 비동기로 분리해 UI 스레드 점유 해소',
+          'BIOMETRY_ANY + WHEN_UNLOCKED 정책을 적용하고 미등록 기기의 자격 증명 저장 실패 방지',
+          '인증 과정에서 발생하던 오류율을 약 40%에서 0%로 개선',
         ],
       },
       {
@@ -45,7 +46,8 @@ export const projects: Project[] = [
         name: '트러블 슈팅 — 가상 스크롤 적용',
         items: [
           '문제: 렌더링 요소 과다로 FPS 30까지 저하, 스크롤 끊김 발생',
-          '해결: 가상 스크롤(virtualized list) 적용으로 화면에 보이는 구간만 렌더링, 55~60 FPS 안정적 유지',
+          '해결: @tanstack/react-virtual을 적용해 화면에 필요한 구간만 렌더링하고 FPS를 55~60 수준으로 회복',
+          '50명 이상의 사용자 평가에서 평균 4.7점 이상, 응답자의 90% 이상이 개선 버전을 선호',
         ],
       },
     ],
@@ -65,33 +67,48 @@ export const projects: Project[] = [
   },
   {
     title: 'Xconda',
-    period: '2025.12 – 진행중',
+    period: '2026.03 – 2026.06',
     description:
-      'Cubeberry와의 산학협력 프로젝트. Google Veo·Runway·Kling 등 16개 AI 도구를 통합한 이미지·비디오 생성 플랫폼. 크레딧 기반 결제 시스템으로 서비스 제공',
-    role: 'FrontEnd, BackEnd',
+      '북미 시장을 대상으로 한 AI 이미지·영상 생성 올인원 SaaS 플랫폼. Functions 2,100+회/주 호출, Firestore 읽기 4,400+회/일 규모로 운영',
+    role: 'Full Stack',
     team: '산학협력 기업: Cubeberry',
     sections: [
       {
-        name: 'AI 스튜디오 도구 풀스택 구현',
+        name: "Director's Sequence 신규 기능",
         items: [
-          '시네마틱 스토리보드·Cloth Swap·Cine-Grid·Red Arrow View·CineGrade·Image Upscale 총 6개 도구의 서버 API 및 클라이언트 페이지 구현',
-          '크레딧 선차감 → AI Provider(Google GenAI·Runway·Kling 등) 호출 → 웹훅 결과 수신의 비동기 처리 흐름을 도구별로 구축',
-          'Starting → Processing → Succeeded/Failed 상태 흐름 관리 및 실패 시 크레딧 자동 환불 처리',
+          '씬 8개 일괄 생성·그룹화·Resume UI와 서버 API 전체 개발',
+          '페이지 재진입 시 미완료 씬 전체에 실시간 리스너를 재부착해 상태 누락 0건으로 개선',
+          '서버·워커·상수 3개 파일에 프롬프트 필드를 추가해 장르별 스타일 이탈 문제 해결',
         ],
       },
       {
-        name: 'Image Upscale 히스토리 UI 개선',
+        name: '결제 시스템 통합',
         items: [
-          '최신 결과를 상단에 크게 표시하고 이전 결과를 History 섹션으로 분리하여 결과 탐색 편의성 향상',
-          'larg prop 추가로 결과 이미지 크기(width 100% / max-height 55vh) 동적 제어',
-          '결과 조회 범위를 1시간/1개 → 24시간/100개로 확장',
+          'fast-geoip으로 서버 IP 국가를 판별해 국내·해외 결제 플로우 자동 분기',
+          'PayPal eCheck의 pre-success 이벤트를 예외 처리해 웹훅 500 오류를 200 정상 응답으로 개선',
+          'Topaz 업스케일 출력 MP 기반 계단식 tier 과금 로직 설계',
         ],
       },
       {
-        name: '트러블 슈팅 — Firestore 구독 시 이전 데이터 노출',
+        name: '관리자 페이지·코드 품질',
         items: [
-          '문제: docId 변경 시 data.value 초기화 누락으로 구독 전환 중 이전 결과가 잠깐 노출',
-          '해결: watch에서 newId 진입 시점에 data.value = null로 즉시 초기화하여 잔상 제거',
+          'BigQuery로 마이그레이션해 Firestore 의존도를 낮추고 연산 비용 절감',
+          '결제 테이블·이메일 검색·월 기준 기간 필터를 추가해 관리자 조회 효율 개선',
+          'sharp 품질값을 80에서 95로 높이고 JPEG·PNG·WebP별 인코딩 분기를 적용해 AI 결과물 품질 보존',
+        ],
+      },
+      {
+        name: '트러블 슈팅 — 멀티 이미지 크레딧 차감',
+        items: [
+          '문제: 여러 장을 생성해도 고정값 1만 계산되어 1장 분의 크레딧만 차감',
+          '해결: numRslts를 차감 계산에 반영하고 1장·2장·4장 케이스를 검증해 최대 75%의 수익 누수 차단',
+        ],
+      },
+      {
+        name: '트러블 슈팅 — PayPal eCheck 웹훅 처리',
+        items: [
+          '문제: 비동기 결제의 PayPending 이벤트를 처리하지 못해 웹훅이 500을 반환하고 결제 상태가 불일치',
+          '해결: PayPending 문서를 먼저 생성하고 최종 승인 이벤트에서 갱신하는 2단계 처리 구조로 개선',
         ],
       },
     ],
@@ -102,9 +119,10 @@ export const projects: Project[] = [
       'Tailwind CSS',
       'Pinia',
       'Firebase',
-      'Firestore',
-      'Google GenAI',
-      'Cloudflare R2',
+      'PostgreSQL',
+      'Gemini API',
+      'PortOne',
+      'GA4',
     ],
   },
   {
@@ -150,8 +168,15 @@ export const projects: Project[] = [
       {
         name: '트러블 슈팅 — SSE 이벤트 미수신',
         items: [
-          '문제: SSE 연결은 되었지만 유사한 역할의 API 두 개를 동시 호출하며 충돌, 이벤트 수신 불가',
-          '해결: SSE 트리거 시점을 분리하고, 이벤트명에 addEventListener를 등록해 실시간 수신 정상화',
+          '문제: 탭 전환·네트워크 오류·연결 끊김 이후 SSE 스트림이 복구되지 않아 데이터 갱신 누락',
+          '해결: SSE 트리거 시점을 분리하고 online·visibilitychange 이벤트에서 연결을 자동 복구하도록 개선',
+        ],
+      },
+      {
+        name: '트러블 슈팅 — 좌석 예매 상태 공유',
+        items: [
+          '문제: 예매 상태가 여러 컴포넌트에 분산되어 prop drilling이 발생하고 좌석 배치도에 낙관적 업데이트 미적용',
+          '해결: Zustand bookingStore로 상태를 통합하고 오버부킹 방지 가드와 선점 좌석 자동 해제 로직 추가',
         ],
       },
     ],
@@ -165,6 +190,68 @@ export const projects: Project[] = [
       'Axios',
     ],
   },
+  {
+    title: 'Upstream',
+    period: '2026.07 – 2026.08',
+    description:
+      '한의사 80% 이상이 사용하는 한의원 통합 관리 서비스. 세금계산서·카드·계좌 자동 수집부터 결재 워크플로우, 손익 분석, 예산 관리까지 재무 기능 백엔드 전담 개발',
+    role: 'Backend Developer (인티그레이션 체험형 인턴)',
+    team: '재무 기능 백엔드 단독 담당',
+    sections: [
+      {
+        name: 'AWS 인프라 설계',
+        items: [
+          'ALB → EKS(IRSA) Fastify Public API와 Lambda(EventBridge + SQS) 배치를 분리한 하이브리드 구조 설계',
+          '재무 서비스 전용 RDS Aurora PostgreSQL 인스턴스를 신규 생성하고 배치 작업을 별도 컴퓨팅으로 격리',
+        ],
+      },
+      {
+        name: '전자세금계산서·카드·계좌 자동 수집 연동',
+        items: [
+          '바로빌 SOAP 연동과 스케줄러 → SQS → Lambda 워커로 세금계산서·카드·계좌 내역 자동 수집',
+          '민감 정보는 AES-256-GCM으로 암호화하고 200일 조회 제한은 구간 분할 호출로 처리',
+          '구글 시트가 사라지면서 월 약 4시간이던 작업 시간을 약 75% 단축',
+        ],
+      },
+      {
+        name: '트러블 슈팅 — Lambda 번들 외부 라이브러리',
+        items: [
+          '문제: esbuild의 Lambda 번들링에서 CJS 패키지 export 구조 차이로 워커가 초기화 단계에서 종료',
+          '해결: named/default export를 함께 처리하는 헬퍼와 공용 banner 설정을 EKS·Lambda에 적용하고 회귀 테스트 추가',
+        ],
+      },
+      {
+        name: '트러블 슈팅 — 커서 페이지네이션 누락',
+        items: [
+          '문제: JS Date의 밀리초와 DB 컬럼의 마이크로초 정밀도 차이로 페이지 경계 행이 누락',
+          '해결: (ms 절단값, μs 나머지, id) 3단 타이브레이크를 적용해 15만 건 검증에서 누락률 0.072%를 0%로 개선',
+        ],
+      },
+      {
+        name: '트러블 슈팅 — 월 단위 계산 불일치',
+        items: [
+          '문제: 예산·손익 여러 파일에 월 경계·윤년·말일 처리 로직이 중복되어 결과 불일치 발생',
+          '해결: 월 산술 로직을 공용 모듈로 통합하고 13,860개 케이스를 기존 로직과 전수 비교해 불일치 0건 확인',
+        ],
+      },
+    ],
+    techs: [
+      'Fastify',
+      'TypeScript',
+      'Node.js',
+      'Docker',
+      'RDS Aurora PostgreSQL',
+      'AWS ALB',
+      'AWS EKS',
+      'AWS Lambda',
+      'AWS SQS',
+      'AWS EventBridge',
+      'AWS S3',
+      'Bitbucket Pipelines',
+      'ArgoCD',
+      'Serverless Framework',
+    ],
+  },
 ]
 
 export const skillGroups: SkillGroup[] = [
@@ -174,7 +261,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     category: 'Framework / Library',
-    skills: ['React', 'React Native', 'Next.js', 'Nest.js', 'Expo', 'TanStack Query', 'Zustand', 'Redux'],
+    skills: ['React', 'React Native', 'Next.js', 'Nest.js', 'Expo', 'TanStack Query', 'Zustand', 'Redux', 'Node.js', 'Fastify', 'Nuxt', 'Vue'],
   },
   {
     category: 'Styling',
@@ -185,8 +272,12 @@ export const skillGroups: SkillGroup[] = [
     skills: ['Zod', 'Axios', 'Socket.IO', 'Vitest', 'ESLint', 'Prettier', 'Git', 'Slack', 'Jira'],
   },
   {
+    category: 'Data',
+    skills: ['PostgreSQL', 'Firebase', 'Firestore', 'BigQuery'],
+  },
+  {
     category: 'Infrastructure',
-    skills: ['GitHub Actions', 'EAS', 'Vercel', 'Sentry', 'Docker'],
+    skills: ['GitHub Actions', 'EAS', 'Vercel', 'Sentry', 'Docker', 'AWS ALB', 'AWS EKS', 'AWS Lambda', 'AWS SQS', 'AWS EventBridge', 'AWS S3', 'ArgoCD', 'Serverless Framework', 'Bitbucket Pipelines'],
   },
 ]
 
@@ -207,6 +298,12 @@ export const awards: Award[] = [
 
 export const activities: Activity[] = [
   {
+    title: '인티그레이션 체험형 인턴',
+    period: '2026.07 – 2026.08',
+    description: '한의원 통합 관리 서비스 Upstream 재무 기능 백엔드 전담 개발',
+    tooltip: null,
+  },
+  {
     title: '전교 학생회장 위임',
     period: '2025.07 – 2026.07',
     description: null,
@@ -223,5 +320,11 @@ export const activities: Activity[] = [
     period: '2025.10.25',
     description: null,
     tooltip: '전국 IT 고등학교 학생들이 교류하고 성장하는 장으로, 지식과 경험을 공유하는 컨퍼런스',
+  },
+  {
+    title: 'AI tech+ 발표',
+    period: '2025.10.17',
+    description: null,
+    tooltip: null,
   },
 ]

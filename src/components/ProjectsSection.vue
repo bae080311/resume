@@ -49,8 +49,19 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import Tooltip from "./Tooltip.vue";
-import { projects } from "../data/activeResume";
+import { projects as activeProjects } from "../data/activeResume";
+import { usePortfolioChannel } from '../composables/usePortfolioChannel'
+import type { Project } from '../data/types'
+
+const { activeChannel } = usePortfolioChannel()
+
+const projects = computed<Project[]>(() =>
+  activeChannel.value.projectTitles
+    .map((title) => activeProjects.find((project) => project.title === title))
+    .filter((project): project is Project => project !== undefined)
+)
 </script>
 
 <style scoped>

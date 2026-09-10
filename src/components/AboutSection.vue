@@ -6,10 +6,10 @@
         <h3>꾸준하고 한결같은 사람입니다</h3>
         <p>
           단기간의 몰입보다 매일 조금씩 성장하는 것을 더 중요하게 생각합니다.<br />
-          매일 코딩 테스트를 풀이해 <strong>240개+</strong> 문제를
+          매일 코딩 테스트를 풀이해 <strong>{{ activeChannel.solvedProblems }}</strong> 문제를
           해결했습니다.<br />
           또한 기술 블로그를 운영하며 매주 1편 이상, 지금까지 총
-          <strong>70편+</strong>의 글을 꾸준히 작성해 왔습니다.
+          <strong>{{ activeChannel.blogPosts }}</strong>의 글을 꾸준히 작성해 왔습니다.
         </p>
       </div>
       <div class="trait">
@@ -35,6 +35,9 @@
 
 <script setup lang="ts">
 import Tooltip from "./Tooltip.vue";
+import { usePortfolioChannel } from '../composables/usePortfolioChannel'
+
+const { activeChannel } = usePortfolioChannel()
 </script>
 
 <style scoped>

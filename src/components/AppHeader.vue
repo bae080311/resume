@@ -23,7 +23,9 @@ onMounted(() => {
 <template>
   <header>
     <div class="header-inner">
-      <span class="logo">배경진</span>
+      <div class="identity">
+        <span class="logo">배경진</span>
+      </div>
       <div class="header-right">
         <nav>
           <a href="#about">소개</a>
@@ -74,6 +76,11 @@ header {
   letter-spacing: -0.3px;
 }
 
+.identity {
+  display: flex;
+  align-items: center;
+}
+
 .header-right {
   display: flex;
   align-items: center;
@@ -114,5 +121,17 @@ nav a:hover { color: var(--black); }
 
 @media (max-width: 600px) {
   nav { display: none; }
+
+  .header-inner {
+    padding: 0 16px;
+  }
+
+  .identity {
+    gap: 0;
+  }
+}
+
+@media (max-width: 430px) {
+  .logo { display: none; }
 }
 </style>
