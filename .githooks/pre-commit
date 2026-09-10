@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+
+npm run git:branch-check
+git diff --cached --check
+npm run check

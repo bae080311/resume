@@ -30,10 +30,15 @@ import {
   awards,
   activities,
 } from "../src/data/resumeData";
+import {
+  assertValidResumeData,
+  assertValidVariant,
+} from "./validate-resume";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const VARIANTS_DIR = join(__dirname, "variants");
 const ACTIVE_RESUME_PATH = join(__dirname, "../src/data/activeResume.ts");
+const BASE_RESUME_DATA: ResumeData = { projects, skillGroups, awards, activities };
 
 const client = new Anthropic();
 
@@ -84,8 +89,6 @@ async function tailorResume(
   companyName: string,
   role: string
 ): Promise<{ data: ResumeData; changes: string[] }> {
-  const baseData: ResumeData = { projects, skillGroups, awards, activities };
-
   const systemPrompt = `당신은 이력서 맞춤화 전문가입니다. 지원자의 이력서 데이터와 채용공고를 분석해 채용공고에 최적화된 이력서 데이터를 JSON으로 반환합니다.
 
 규칙:
@@ -114,7 +117,7 @@ async function tailorResume(
 ${jobText}
 
 === 현재 이력서 데이터 ===
-${JSON.stringify(baseData, null, 2)}`;
+${JSON.stringify(BASE_RESUME_DATA, null, 2)}`;
 
   console.log("Claude가 채용공고를 분석하고 이력서를 맞춤화하는 중...");
 
@@ -136,9 +139,24 @@ ${JSON.stringify(baseData, null, 2)}`;
 
   // JSON 파싱 (마크다운 코드블록 감싸인 경우 처리)
   const raw = content.text.replace(/^```json\n?|```$/gm, "").trim();
-  const parsed = JSON.parse(raw);
+  const parsed: unknown = JSON.parse(raw);
 
-  return { data: parsed.data, changes: parsed.changes };
+  if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
+    throw new Error("Claude 응답은 JSON 객체여야 합니다.");
+  }
+
+  const { data, changes } = parsed as Record<string, unknown>;
+  assertValidResumeData(data, BASE_RESUME_DATA);
+
+  if (
+    !Array.isArray(changes) ||
+    changes.length === 0 ||
+    !changes.every((change) => typeof change === "string" && change.trim().length > 0)
+  ) {
+    throw new Error("changes는 비어 있지 않은 문자열 배열이어야 합니다.");
+  }
+
+  return { data, changes };
 }
 
 // ─── 버전 저장/로드 ───────────────────────────────────────────────────────────
@@ -151,6 +169,7 @@ function slugify(name: string): string {
 }
 
 function saveVariant(variant: ResumeVariant): string {
+  assertValidVariant(variant, BASE_RESUME_DATA);
   const slug = slugify(variant.meta.company);
   const path = join(VARIANTS_DIR, `${slug}.json`);
   writeFileSync(path, JSON.stringify(variant, null, 2), "utf-8");
@@ -163,19 +182,28 @@ function loadVariant(nameOrSlug: string): ResumeVariant {
   if (!existsSync(path)) {
     throw new Error(`버전을 찾을 수 없습니다: ${nameOrSlug}`);
   }
-  return JSON.parse(readFileSync(path, "utf-8"));
+  const candidate: unknown = JSON.parse(readFileSync(path, "utf-8"));
+  assertValidVariant(candidate, BASE_RESUME_DATA);
+  return candidate;
 }
 
 function listVariants(): ResumeVariant[] {
   if (!existsSync(VARIANTS_DIR)) return [];
   return readdirSync(VARIANTS_DIR)
     .filter((f) => f.endsWith(".json"))
-    .map((f) => JSON.parse(readFileSync(join(VARIANTS_DIR, f), "utf-8")));
+    .map((f) => {
+      const candidate: unknown = JSON.parse(
+        readFileSync(join(VARIANTS_DIR, f), "utf-8")
+      );
+      assertValidVariant(candidate, BASE_RESUME_DATA);
+      return candidate;
+    });
 }
 
 // ─── activeResume.ts 파일 조작 ────────────────────────────────────────────────
 
 function applyVariant(variant: ResumeVariant): void {
+  assertValidVariant(variant, BASE_RESUME_DATA);
   const { data, meta } = variant;
 
   const content = `// Managed by resume-agent. Current: ${meta.company} — ${meta.role}

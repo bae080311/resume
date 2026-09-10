@@ -1,0 +1,40 @@
+name: Quality
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  policy:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate branch and PR title
+        env:
+          BRANCH_NAME: ${{ github.head_ref }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          if [[ ! "$BRANCH_NAME" =~ ^(feat|fix|docs|refactor|test|chore)/[a-z0-9][a-z0-9-]*$ ]]; then
+            echo "Invalid branch name: $BRANCH_NAME"
+            exit 1
+          fi
+          if [[ ! "$PR_TITLE" =~ ^(feat|fix|docs|refactor|test|chore|build|ci|perf|revert)(\([a-z0-9-]+\))?:\ .+ ]]; then
+            echo "PR title must follow Conventional Commits: $PR_TITLE"
+            exit 1
+          fi
+
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: git diff --check
