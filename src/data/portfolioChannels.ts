@@ -17,7 +17,7 @@ export const portfolioChannels: Record<PortfolioChannelId, PortfolioChannel> = {
     path: '/frontend',
     label: '프론트엔드',
     role: '프론트엔드 개발자',
-    projectTitles: ['시민화폐, 광산', '光탈페(광주탈렌트페스티벌)'],
+    projectTitles: ['시민화폐, 광산', '光탈페(광주탈렌트페스티벌)', 'Xconda'],
     skills: [
       'TypeScript',
       'JavaScript',
